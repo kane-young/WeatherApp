@@ -18,6 +18,7 @@
 		C367FD7427E997E100529349 /* LocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD7327E997E100529349 /* LocationResponse.swift */; };
 		C367FD7627E9A3A100529349 /* LocationResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD7527E9A3A100529349 /* LocationResponseTests.swift */; };
 		C367FD7E27E9B8EF00529349 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD7D27E9B8EF00529349 /* HTTPMethod.swift */; };
+		C367FD8027E9B98C00529349 /* NetworkRequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD7F27E9B98C00529349 /* NetworkRequestRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		C367FD7327E997E100529349 /* LocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponse.swift; sourceTree = "<group>"; };
 		C367FD7527E9A3A100529349 /* LocationResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponseTests.swift; sourceTree = "<group>"; };
 		C367FD7D27E9B8EF00529349 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		C367FD7F27E9B98C00529349 /* NetworkRequestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestRouter.swift; sourceTree = "<group>"; };
 		CC8273AE18B7EF645F5DD5DE /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				C367FD7D27E9B8EF00529349 /* HTTPMethod.swift */,
+				C367FD7F27E9B98C00529349 /* NetworkRequestRouter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				C367FD4C27E46BA900529349 /* WeatherListViewController.swift in Sources */,
 				C367FD7427E997E100529349 /* LocationResponse.swift in Sources */,
 				C367FD7E27E9B8EF00529349 /* HTTPMethod.swift in Sources */,
+				C367FD8027E9B98C00529349 /* NetworkRequestRouter.swift in Sources */,
 				C367FD4827E46BA900529349 /* AppDelegate.swift in Sources */,
 				C367FD7127E9966400529349 /* City.swift in Sources */,
 				C367FD4A27E46BA900529349 /* SceneDelegate.swift in Sources */,

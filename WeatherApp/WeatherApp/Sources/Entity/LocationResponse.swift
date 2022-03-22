@@ -175,7 +175,7 @@ import Foundation
  }
  */
 
-struct LocationResponse: Decodable {
+struct LocationResponse: Decodable, Equatable {
   let consolidatedWeather: [WeatherResponse]
   let time, sunRise, sunSet, timezoneName: String
   let parent: CitySearchResponse
@@ -198,7 +198,7 @@ struct LocationResponse: Decodable {
   }
 }
 
-struct WeatherResponse: Decodable {
+struct WeatherResponse: Decodable, Equatable {
   let id: Int
   let weatherStateName, weatherStateAbbr, windDirectionCompass, created: String
   let applicableDate: String
@@ -225,7 +225,7 @@ struct WeatherResponse: Decodable {
   }
 }
 
-struct CitySearchResponse: Decodable {
+struct CitySearchResponse: Decodable, Equatable {
   let title, locationType: String
   let woeid: Int
   let lattLong: String
@@ -238,7 +238,7 @@ struct CitySearchResponse: Decodable {
   }
 }
 
-struct SourceResponse: Decodable {
+struct SourceResponse: Decodable, Equatable {
   let title, slug: String
   let url: String
   let crawlRate: Int

@@ -12,14 +12,14 @@ enum City {
   case london
   case chicago
 
-  var identifier: String {
+  var identifier: Int {
     switch self {
     case .seoul:
-      return "1132599"
+      return 1132599
     case .london:
-      return "44418"
+      return 44418
     case .chicago:
-      return "2379574"
+      return 2379574
     }
   }
 }

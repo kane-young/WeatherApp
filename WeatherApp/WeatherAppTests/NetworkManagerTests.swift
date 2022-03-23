@@ -31,7 +31,7 @@ final class NetworkManagerTests: XCTestCase {
     self.expectation = nil
   }
 
-  func test_네트워킹시_404에러발생하면_invalidStatusCode_발생() {
+  func test_fetchLocationResponse_404에러발생하면_invalidStatusCode_발생() {
     //given
     let expectedError = NetworkError.invalidStatusCode
     let dummyURL = URL(string: "https://www.weatherapp.com")!
@@ -54,7 +54,7 @@ final class NetworkManagerTests: XCTestCase {
     wait(for: [expectation], timeout: 2.0)
   }
 
-  func test_네트워킹시_error존재하면_connectionProblem_발생() {
+  func test_fetchLocationResponse_error존재하면_connectionProblem_발생() {
     //given
     let expectedError = NetworkError.connectionProblem
     let dummyURL = URL(string: "https://www.weatherapp.com")!
@@ -77,7 +77,7 @@ final class NetworkManagerTests: XCTestCase {
     wait(for: [expectation], timeout: 2.0)
   }
 
-  func test_네트워킹시_Entity모델과_다르면_Response라면_decodingError_발생() {
+  func test_fetchLocationResponse_Entity와_다른_JSONData일_경우_decodingError_발생() {
     //given
     let expectedError = NetworkError.decodingError
     let dummyURL = URL(string: "https://www.weatherapp.com")!
@@ -101,7 +101,7 @@ final class NetworkManagerTests: XCTestCase {
     wait(for: [expectation], timeout: 2.0)
   }
 
-  func test_네트워킹시_정상작동_확인() {
+  func test_fetchLocationResponse_정상작동_확인() {
     //given
     let dummyURL = URL(string: "https://www.weatherapp.com")!
     let expectedData = """
@@ -200,6 +200,74 @@ final class NetworkManagerTests: XCTestCase {
       .subscribe { response in
         //then
         expect(response).to(equal(expectedLocationResponse))
+        self.expectation.fulfill()
+      } onFailure: { _ in
+        XCTFail()
+      }.disposed(by: self.disposeBag)
+
+    wait(for: [expectation], timeout: 2.0)
+  }
+
+  func test_fetchWeatherLogo_404에러발생하면_invalidStatusCode_발생() {
+    //given
+    let expectedError = NetworkError.invalidStatusCode
+    let dummyURL = URL(string: "https://www.weatherapp.com")!
+    MockURLProtocol.requestHandler = { _ in
+        let response = HTTPURLResponse(url: dummyURL, statusCode: 404, httpVersion: nil, headerFields: nil)
+        return (response, nil, nil)
+    }
+
+    //when
+    self.sut.fetchWeatherLogo(with: .clear)
+      .subscribe { _ in
+        XCTFail()
+      } onFailure: { error in
+        //then
+        guard let error = error as? NetworkError else { return }
+        expect(error).to(equal(expectedError))
+        self.expectation.fulfill()
+      }.disposed(by: self.disposeBag)
+
+    wait(for: [expectation], timeout: 2.0)
+  }
+
+  func test_fetchWeatherLogo_error존재하면_connectionProblem_발생() {
+    //given
+    let expectedError = NetworkError.connectionProblem
+    let dummyURL = URL(string: "https://www.weatherapp.com")!
+    MockURLProtocol.requestHandler = { _ in
+      let response = HTTPURLResponse(url: dummyURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+      return (response, Data(), NetworkError.connectionProblem)
+    }
+
+    //when
+    self.sut.fetchWeatherLogo(with: .clear)
+      .subscribe { _ in
+        XCTFail()
+      } onFailure: { error in
+        //then
+        guard let error = error as? NetworkError else { return }
+        expect(error).to(equal(expectedError))
+        self.expectation.fulfill()
+      }.disposed(by: self.disposeBag)
+
+    wait(for: [expectation], timeout: 2.0)
+  }
+
+  func test_fetchWeatherLogo_정상작동_확인() {
+    //given
+    let dummyURL = URL(string: "https://www.weatherapp.com")!
+    let expectedData = Data()
+    MockURLProtocol.requestHandler = { _ in
+      let response = HTTPURLResponse(url: dummyURL, statusCode: 200, httpVersion: nil, headerFields: nil)
+      return (response, expectedData, nil)
+    }
+
+    //when
+    self.sut.fetchWeatherLogo(with: .clear)
+      .subscribe { response in
+        //then
+        expect(response).to(equal(expectedData))
         self.expectation.fulfill()
       } onFailure: { _ in
         XCTFail()

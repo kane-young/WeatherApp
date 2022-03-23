@@ -13,6 +13,7 @@ protocol URLRequestConvertible {
 
 enum NetworkRequestRouter: URLRequestConvertible {
   case fetchWeather(identifier: Int)
+  case fetchWeatherLogo(state: WeatherState)
 
   private var baseURLString: String {
     return "https://www.metaweather.com"
@@ -26,6 +27,8 @@ enum NetworkRequestRouter: URLRequestConvertible {
     switch self {
     case .fetchWeather(let identifier):
       return "/api/location/\(identifier)/"
+    case .fetchWeatherLogo(let state):
+      return "/static/img/weather/\(state.abbreviation).svg"
     }
   }
 

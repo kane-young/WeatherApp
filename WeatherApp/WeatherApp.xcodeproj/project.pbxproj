@@ -23,6 +23,7 @@
 		C367FD8427E9C8DE00529349 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD8327E9C8DE00529349 /* NetworkManagerTests.swift */; };
 		C367FD8627E9C8EC00529349 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD8527E9C8EB00529349 /* MockURLSession.swift */; };
 		C367FD8827E9F27A00529349 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD8727E9F27A00529349 /* NetworkError.swift */; };
+		C367FD8A27E9F54D00529349 /* WeatherState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367FD8927E9F54D00529349 /* WeatherState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		C367FD8327E9C8DE00529349 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
 		C367FD8527E9C8EB00529349 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		C367FD8727E9F27A00529349 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C367FD8927E9F54D00529349 /* WeatherState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherState.swift; sourceTree = "<group>"; };
 		CC8273AE18B7EF645F5DD5DE /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7713CF1EA23D690B173DCBD /* Pods-WeatherAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +170,7 @@
 				C367FD7D27E9B8EF00529349 /* HTTPMethod.swift */,
 				C367FD7F27E9B98C00529349 /* NetworkRequestRouter.swift */,
 				C367FD8127E9BB4C00529349 /* NetworkManager.swift */,
+				C367FD8927E9F54D00529349 /* WeatherState.swift */,
 				C367FD8727E9F27A00529349 /* NetworkError.swift */,
 			);
 			path = Network;
@@ -367,6 +370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C367FD8A27E9F54D00529349 /* WeatherState.swift in Sources */,
 				C367FD4C27E46BA900529349 /* WeatherListViewController.swift in Sources */,
 				C367FD7427E997E100529349 /* LocationResponse.swift in Sources */,
 				C367FD7E27E9B8EF00529349 /* HTTPMethod.swift in Sources */,

@@ -14,9 +14,7 @@ target 'WeatherApp' do
   target 'WeatherAppTests' do
     inherit! :search_paths
     # Pods for testing
-  pod 'RxTest', '6.5.0'
   pod 'Nimble'
-  pod 'RxNimble', subspecs: ['RxBlocking', 'RxTest']
   end
 
 end

@@ -7,6 +7,7 @@
 
 import UIKit
 
+import RxSwift
 import SnapKit
 
 final class WeatherListViewCell: UITableViewCell {
@@ -18,6 +19,8 @@ final class WeatherListViewCell: UITableViewCell {
   private let weatherLabel = UILabel()
   private let maxTemperatureLabel = UILabel()
   private let minimumTemperatureLabel = UILabel()
+  private var disposeBag = DisposeBag()
+  private var viewModel: WeatherListCellViewModel?
 
 
   // MARK: Initializers
@@ -71,7 +74,7 @@ final class WeatherListViewCell: UITableViewCell {
 
   private func attribute() {
     self.setLabel(self.dateLabel, size: 17, textColor: .darkGray)
-    self.setLabel(self.maxTemperatureLabel, size: 14, textColor: .darkGray)
+    self.setLabel(self.weatherLabel, size: 14, textColor: .darkGray)
     self.setLabel(self.minimumTemperatureLabel, size: 15, textColor: .darkGray)
     self.setLabel(self.maxTemperatureLabel, size: 15, textColor: .darkGray)
   }
@@ -81,10 +84,59 @@ final class WeatherListViewCell: UITableViewCell {
     label.textColor = textColor
   }
 
+  override func prepareForReuse() {
+    self.dateLabel.text = nil
+    self.weatherLabel.text = nil
+    self.maxTemperatureLabel.text = nil
+    self.minimumTemperatureLabel.text = nil
+    self.logoImageView.image = nil
+    self.disposeBag = DisposeBag()
+  }
 
-  // MARK: Set Data
 
-  func setData(with cellData: Data) {
-    // TODO: cell의 Content
+  // MARK: Bind
+
+  func bind(with viewModel: WeatherListCellViewModel) {
+    self.viewModel = viewModel
+
+    let output = viewModel.transform(input: WeatherListCellViewModel.Input())
+
+    output.logoData
+      .observe(on: MainScheduler.instance)
+      .bind(onNext: { data in
+        self.logoImageView.image = UIImage(data: data)
+      }).disposed(by: self.disposeBag)
+
+    output.error
+      .observe(on: MainScheduler.instance)
+      .bind { _ in
+        self.logoImageView.image = UIImage(systemName: "xmark")
+      }.disposed(by: self.disposeBag)
+
+    self.setDateLabelText(with: viewModel.cellData)
+    self.setWeatherLabelText(with: viewModel.cellData)
+    self.setMaxTemperatureLabelText(with: viewModel.cellData)
+    self.setMinimumTemperatureLabelText(with: viewModel.cellData)
+  }
+
+  private func setDateLabelText(with cellData: WeatherListViewCellData) {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "YYYY-MM-dd"
+    guard let date = formatter.date(from: cellData.dateText) else { return }
+    formatter.dateFormat = "EEE d MMM"
+    let dateLabelText = formatter.string(from: date)
+    self.dateLabel.text = dateLabelText
+  }
+
+  private func setWeatherLabelText(with cellData: WeatherListViewCellData) {
+    self.weatherLabel.text = cellData.weatherState.rawValue
+  }
+
+  private func setMaxTemperatureLabelText(with cellData: WeatherListViewCellData) {
+    self.maxTemperatureLabel.text = "MAX : \(cellData.maxTemperature)℃"
+  }
+
+  private func setMinimumTemperatureLabelText(with cellData: WeatherListViewCellData) {
+    self.minimumTemperatureLabel.text = "MIN : \(cellData.minTemperature)℃"
   }
 }

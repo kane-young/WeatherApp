@@ -136,6 +136,28 @@
 			path = WeatherList;
 			sourceTree = "<group>";
 		};
+		C308987327EC610300455A7A /* WeatherList */ = {
+			isa = PBXGroup;
+			children = (
+				C308987427EC611600455A7A /* Components */,
+				C367FD4B27E46BA900529349 /* WeatherListViewController.swift */,
+				C308986827EC5B5300455A7A /* WeatherListUseCase.swift */,
+				C367FD8927E9F54D00529349 /* WeatherState.swift */,
+				C367FD7027E9966400529349 /* City.swift */,
+			);
+			path = WeatherList;
+			sourceTree = "<group>";
+		};
+		C308987427EC611600455A7A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C31375F627EAF9DB00975956 /* WeatherListViewCell.swift */,
+				C308986227EC59CD00455A7A /* WeatherListViewCellData.swift */,
+				C308986627EC5ABD00455A7A /* WeatherListSection.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		C367FD3B27E46BA900529349 = {
 			isa = PBXGroup;
 			children = (
@@ -182,13 +204,7 @@
 			children = (
 				C367FD7A27E9B83100529349 /* Network */,
 				C367FD7227E9976E00529349 /* Entity */,
-				C367FD4B27E46BA900529349 /* WeatherListViewController.swift */,
-				C31375F627EAF9DB00975956 /* WeatherListViewCell.swift */,
-				C308986227EC59CD00455A7A /* WeatherListViewCellData.swift */,
-				C308986627EC5ABD00455A7A /* WeatherListSection.swift */,
-				C308986827EC5B5300455A7A /* WeatherListUseCase.swift */,
-				C367FD8927E9F54D00529349 /* WeatherState.swift */,
-				C367FD7027E9966400529349 /* City.swift */,
+				C308987327EC610300455A7A /* WeatherList */,
 			);
 			path = Sources;
 			sourceTree = "<group>";

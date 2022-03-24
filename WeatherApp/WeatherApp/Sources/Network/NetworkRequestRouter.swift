@@ -28,7 +28,7 @@ enum NetworkRequestRouter: URLRequestConvertible {
     case .fetchWeather(let identifier):
       return "/api/location/\(identifier)/"
     case .fetchWeatherLogo(let state):
-      return "/static/img/weather/\(state.abbreviation).svg"
+      return "/static/img/weather/png/\(state.abbreviation).png"
     }
   }
 

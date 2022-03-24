@@ -20,3 +20,5 @@ extension WeatherListSection: SectionModelType {
     self.items = items
   }
 }
+
+extension WeatherListSection: Equatable { }

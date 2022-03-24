@@ -13,3 +13,5 @@ struct WeatherListViewCellData {
   let maxTemperature: Int
   let minTemperature: Int
 }
+
+extension WeatherListViewCellData: Equatable { }

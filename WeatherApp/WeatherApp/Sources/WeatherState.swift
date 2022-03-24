@@ -7,17 +7,17 @@
 
 import Foundation
 
-enum WeatherState {
-  case snow
-  case sleet
-  case hail
-  case thunderStom
-  case heavyRain
-  case lightRain
-  case showers
-  case heavyCloud
-  case lightCloud
-  case clear
+enum WeatherState: String, CaseIterable {
+  case snow = "Snow"
+  case sleet = "Sleet"
+  case hail = "Hail"
+  case thunderStom = "Thunder Stom"
+  case heavyRain = "Heavy Rain"
+  case lightRain = "Light Rain"
+  case showers = "Showers"
+  case heavyCloud = "Heavy Cloud"
+  case lightCloud = "Light Cloud"
+  case clear = "Clear"
 
   var abbreviation: String {
     switch self {
@@ -42,5 +42,14 @@ enum WeatherState {
     case .clear:
       return "c"
     }
+  }
+
+  static func search(with text: String) -> WeatherState {
+    for weatherState in WeatherState.allCases {
+      if weatherState.rawValue == text {
+        return weatherState
+      }
+    }
+    return .clear
   }
 }
